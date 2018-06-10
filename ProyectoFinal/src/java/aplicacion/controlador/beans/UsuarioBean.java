@@ -5,6 +5,7 @@
  */
 package aplicacion.controlador.beans;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -14,7 +15,7 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean
 @RequestScoped
-public class UsuarioBean {
+public class UsuarioBean implements Serializable{
 
     /**
      * Creates a new instance of UsuarioBean
