@@ -14,12 +14,10 @@ public class Docente {
     private String legajo;
     private String cargo;
     private boolean estado;
-    private Perfil perfilDocente;
+    private Perfil perfil;
 
     public Docente() {
     }
-    
-    
 
     public int getCodigo() {
         return codigo;
@@ -53,12 +51,12 @@ public class Docente {
         this.estado = estado;
     }
 
-    public Perfil getPerfilDocente() {
-        return perfilDocente;
+    public Perfil getPerfil() {
+        return perfil;
     }
 
-    public void setPerfilDocente(Perfil perfilDocente) {
-        this.perfilDocente = perfilDocente;
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
     
     

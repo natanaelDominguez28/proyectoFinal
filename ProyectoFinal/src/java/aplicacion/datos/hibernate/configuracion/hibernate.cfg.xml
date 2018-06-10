@@ -10,5 +10,6 @@
     <mapping resource="aplicacion/datos/hibernate/mapeos/usuario.hbm.xml"/>
     <mapping resource="aplicacion/datos/hibernate/mapeos/Usuarios.hbm.xml"/>
     <mapping/>
+    <mapping resource="aplicacion/datos/hibernate/mapeos/Usuario.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

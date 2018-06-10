@@ -11,14 +11,14 @@ package aplicacion.modelo.dominio;
  */
 public class Usuario {
     private int codigo;
-    private String nombre;
+    private String nombreUsuario;
     private String password;
     private String tipoUsuario;
     private boolean estado;
 
-    public Usuario(int codigo, String nombre, String password, String tipoUsuario, boolean estado) {
+    public Usuario(int codigo, String nombreUsuario, String password, String tipoUsuario, boolean estado) {
         this.codigo = codigo;
-        this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.tipoUsuario = tipoUsuario;
         this.estado = estado;
@@ -35,12 +35,12 @@ public class Usuario {
         this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {
@@ -66,6 +66,6 @@ public class Usuario {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
+
     
 }

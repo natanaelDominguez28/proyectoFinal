@@ -1,12 +1,30 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>UNIVERSIDAD NACIONAL DE JUJUY</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <div class="container">
+            <p:panel header="INGRESO DE USUARIO" footer="GRUPO 9 - A.P.U. - PROGRAMACIÓN VISUAL 2018">
+                <h:form id="frmIngreso">
+                    <p:growl id="mensajeGeneral"/>
+                    <p:panelGrid id="pnlIngreso" columns="2">
+                        <p:outputLabel value="Usuario: " for="txtUsuario"/>
+                        <p:inputText id="txtUsuario" required="true" value="" maxlength="20"/>
+                        <p:outputLabel value="Password " for="txtPassword"/>
+                        <p:password id="txtPassword" required="true" maxlength="20"/>
+
+                        <h:panelGroup/>
+                        <p:commandButton id="btnIngresar" value="Ingresar" update="frmIngreso"/>
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </div>
+
     </h:body>
 </html>
 

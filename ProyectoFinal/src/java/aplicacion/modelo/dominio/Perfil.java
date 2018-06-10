@@ -23,8 +23,6 @@ public class Perfil {
 
     public Perfil() {
     }
-    
-    
 
     public int getCodigo() {
         return codigo;
@@ -89,6 +87,6 @@ public class Perfil {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
     
 }
