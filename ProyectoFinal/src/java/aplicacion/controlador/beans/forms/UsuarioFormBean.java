@@ -5,12 +5,15 @@
  */
 package aplicacion.controlador.beans.forms;
 
+import aplicacion.controlador.beans.UsuarioBean;
 import aplicacion.datos.hibernate.dao.IUsuarioDAO;
-import aplicacion.hibernate.dao.imp.UsuarioDAOImp;
-import aplicacion.modelo.dominio.Usuario;
+import aplicacion.datos.hibernate.dao.imp.UsuarioDAOImp;
+
+
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -22,74 +25,33 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class UsuarioFormBean implements Serializable{
 
-     private String nombreUsuario;
-    private String password;
-    
+    @ManagedProperty(value="#{usuarioBean}")
+    private UsuarioBean usuarioBean;
     /**
-     * Creates a new instance of LoginFormBean
+     * Creates a new instance of UsuarioFormBean
      */
     public UsuarioFormBean() {
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    //validacion del usuario 
-    public String validarUsuario(){
-        String resultado = null;
+    public void actualizarDatos(){
         IUsuarioDAO usuarioDAO = new UsuarioDAOImp();
-        
-        Usuario usuario = usuarioDAO.validarUsuario(nombreUsuario, password);
-        
-        if(usuario != null){
-            //session.put("user", usuario);
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario valido", "Usuario válido");
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-            
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioValido", usuario);
-            resultado = "menu?faces-redirect=true";
-        }else{
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Credenciales Invalidas", "Credenciales Invalidas");
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-            
-        }
-        return resultado;
+        usuarioDAO.modificar(usuarioBean.getUsuario());
+        FacesMessage facesMessage =new FacesMessage(FacesMessage.SEVERITY_ERROR, "Datos actualizados", "Datos actualizados");
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+    }
+    
+    public UsuarioFormBean(UsuarioBean usuarioBean) {
+        this.usuarioBean = usuarioBean;
+    }
+    
+    
+    public UsuarioBean getUsuarioBean() {
+        return usuarioBean;
     }
 
-    public String getNombreUsuarioValidado(){
-        Usuario usuario = (Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioValido");
-        return usuario.getNombreUsuario();
+    public void setUsuarioBean(UsuarioBean usuarioBean) {
+        this.usuarioBean = usuarioBean;
     }
-    public boolean verificarSesion(){
-        boolean sesionValida = false;
-        if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioValido")!=null){
-            sesionValida=true;
-        }
-        return sesionValida;
-    }
-    public String cerrarSesion(){
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        
-        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sesión Cerrada", "");
-        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-        
-        String resultado = "/index?faces-redirect=true";
-        return resultado;
-    }
-    
-    
-    
     
     
     
