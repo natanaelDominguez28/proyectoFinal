@@ -5,9 +5,13 @@
  */
 package aplicacion.controlador.beans;
 
+import aplicacion.datos.hibernate.dao.IUsuarioDAO;
+import aplicacion.datos.hibernate.dao.imp.UsuarioDAOImp;
+import aplicacion.modelo.dominio.Usuario;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -17,10 +21,30 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class UsuarioBean implements Serializable{
 
-    /**
-     * Creates a new instance of UsuarioBean
-     */
+    private Usuario usuario;
+   
     public UsuarioBean() {
+        Usuario usuarioSesion=(Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioValidado");
+        if(usuarioSesion!=null){
+            String nombreUsuario=usuarioSesion.getNombreUsuario();
+             IUsuarioDAO usuarioDAO = new UsuarioDAOImp();
+             usuario=usuarioDAO.obtenerUsuario(nombreUsuario);
+             if(usuario==null){
+                // usuario.setCodigo(2);
+                 usuario.setNombreUsuario("lore");
+                 usuario.setPassword("lore");
+                 usuario.setTipoUsuario("normal");
+                 usuario.setEstado(true);
+             }
+                     
+        }
     }
     
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    
+     public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

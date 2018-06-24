@@ -12,8 +12,9 @@ import aplicacion.modelo.dominio.Usuario;
  * @author natan
  */
 public interface IUsuarioDAO {
-     public Usuario validarUsuario(String nombreUsuario, String password);
-    public void modificar(Usuario usuario);
-    public Usuario obtenerUsuario(String nombreUsuario);
+    Usuario validarUsuario(String nombreUsuario, String password);
+    void modificar(Usuario unUsuario);
+    Usuario obtenerUsuario(String nombreUsuario);
+    void agregarUsuario(Usuario usuario);
     
 }
